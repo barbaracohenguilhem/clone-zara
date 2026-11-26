@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Quiet Tab — Per-Site Volume Reducer",
+  "version": "0.1.0",
+  "description": "Lower the volume of loud sites automatically. Set a per-domain level and it reapplies every visit.",
+  "permissions": ["tabCapture", "storage", "offscreen", "activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Quiet Tab"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
