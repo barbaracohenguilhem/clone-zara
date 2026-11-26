@@ -5,47 +5,30 @@
   <style>
     :root { color-scheme: light dark; }
     body {
-      width: 280px;
+      width: 300px;
       margin: 0;
       padding: 16px;
       font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
     h1 { font-size: 14px; margin: 0 0 2px; }
-    .domain {
-      font-size: 12px;
-      opacity: 0.7;
-      margin-bottom: 14px;
-      word-break: break-all;
-    }
+    .domain { font-size: 12px; opacity: 0.7; margin-bottom: 14px; word-break: break-all; }
     .row { display: flex; align-items: center; gap: 10px; }
     input[type="range"] { flex: 1; }
-    .value {
-      min-width: 42px;
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-      font-weight: 600;
-    }
-    .status {
-      margin-top: 12px;
-      font-size: 11px;
-      opacity: 0.6;
-      min-height: 14px;
-    }
-    .reset {
-      margin-top: 12px;
-      background: none;
-      border: none;
-      color: #3b82f6;
-      font-size: 12px;
-      cursor: pointer;
-      padding: 0;
-    }
-    .reset:hover { text-decoration: underline; }
+    .value { min-width: 42px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+    .toggle { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 12px; }
+    .toggle input { margin: 0; }
+    .status { margin-top: 12px; font-size: 11px; opacity: 0.75; min-height: 14px; }
+    .status.warn { color: #d97706; opacity: 1; }
+    .footer { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .link { background: none; border: none; color: #3b82f6; font-size: 12px; cursor: pointer; padding: 0; }
+    .link:hover { text-decoration: underline; }
+    .plan { font-size: 11px; opacity: 0.6; }
     .blocked { opacity: 0.6; }
+    .pill { font-size: 10px; background: #3b82f6; color: #fff; border-radius: 10px; padding: 1px 7px; margin-left: 6px; }
   </style>
 </head>
 <body>
-  <h1>Quiet Tab</h1>
+  <h1>Quiet Tab <span class="pill" id="proPill" hidden>PRO</span></h1>
   <div class="domain" id="domain">…</div>
 
   <div class="row">
@@ -53,9 +36,19 @@
     <span class="value" id="value">100%</span>
   </div>
 
-  <div class="status" id="status"></div>
-  <button class="reset" id="reset">Reset this site to 100%</button>
+  <label class="toggle">
+    <input type="checkbox" id="normalize" />
+    Even out loud/quiet parts (loudness leveling)
+  </label>
 
+  <div class="status" id="status"></div>
+
+  <div class="footer">
+    <span class="plan" id="plan"></span>
+    <button class="link" id="options">Settings</button>
+  </div>
+
+  <script src="storage.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>
