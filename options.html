@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Quiet Tab — Settings</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      max-width: 520px;
+      margin: 40px auto;
+      padding: 0 20px;
+      font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    h1 { font-size: 20px; }
+    section { margin: 28px 0; padding-top: 18px; border-top: 1px solid rgba(128,128,128,0.25); }
+    h2 { font-size: 15px; margin: 0 0 10px; }
+    .muted { opacity: 0.65; font-size: 13px; }
+    label { display: block; margin: 8px 0; }
+    .inline { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    input[type="time"], input[type="text"] { font: inherit; padding: 4px 6px; }
+    input[type="range"] { vertical-align: middle; }
+    textarea { width: 100%; min-height: 90px; font: 13px/1.4 ui-monospace, monospace; padding: 8px; box-sizing: border-box; }
+    button { font: inherit; padding: 6px 14px; cursor: pointer; }
+    .saved { color: #16a34a; font-size: 13px; margin-left: 10px; }
+    .pro-note { font-size: 13px; opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <h1>Quiet Tab — Settings</h1>
+
+  <section>
+    <h2>Plan</h2>
+    <label class="inline">
+      <input type="checkbox" id="pro" />
+      Pro (unlimited sites + sync)
+    </label>
+    <p class="pro-note" id="planState"></p>
+    <p class="muted">This toggle is a local stand-in for a real license check. Wire it to your billing provider before shipping.</p>
+  </section>
+
+  <section>
+    <h2>Quiet hours</h2>
+    <p class="muted">During this window, captured tabs are held at or below the level below — on top of any per-site setting.</p>
+    <label class="inline"><input type="checkbox" id="schedEnabled" /> Enable quiet hours</label>
+    <label class="inline">From <input type="time" id="schedStart" /> to <input type="time" id="schedEnd" /></label>
+    <label class="inline">
+      Max volume during quiet hours:
+      <input type="range" id="schedGain" min="0" max="100" step="5" />
+      <span id="schedGainVal"></span>
+    </label>
+  </section>
+
+  <section>
+    <h2>Whitelist</h2>
+    <p class="muted">One domain per line. These are never auto-reduced (e.g. music sites). Subdomains match automatically.</p>
+    <textarea id="whitelist" placeholder="open.spotify.com&#10;music.youtube.com"></textarea>
+  </section>
+
+  <div>
+    <button id="save">Save</button>
+    <span class="saved" id="saved" hidden>Saved ✓</span>
+  </div>
+
+  <script src="storage.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
